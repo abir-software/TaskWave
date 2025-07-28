@@ -1,8 +1,211 @@
-/* Main stylesheet for TaskWave */
+/* Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f4f6fa;
-    color: #222;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* 3D Background */
+#3d-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+/* Glassmorphism Effect */
+.glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Task Items */
+.task-item {
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.task-item.important {
+    border-left-color: #f59e0b;
+}
+
+.dark .task-item.important {
+    border-left-color: #fbbf24;
+}
+
+.task-item.completed {
+    opacity: 0.7;
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;
+}
+
+/* Checkbox Styling */
+.task-checkbox {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.dark .task-checkbox {
+    border-color: #4b5563;
+}
+
+.task-checkbox:checked {
+    background-color: #4f46e5;
+    border-color: #4f46e5;
+}
+
+.task-checkbox:checked::after {
+    content: "✓";
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.page-transition {
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Loading Screen */
+#loading-screen {
+    backdrop-filter: blur(10px);
+}
+
+.loader {
+    animation: spin 1s linear infinite;
+}
+
+/* Priority Badges */
+.priority-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+}
+
+.priority-low {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.dark .priority-low {
+    background-color: #064e3b;
+    color: #a7f3d0;
+}
+
+.priority-medium {
+    background-color: #bfdbfe;
+    color: #1e40af;
+}
+
+.dark .priority-medium {
+    background-color: #1e3a8a;
+    color: #93c5fd;
+}
+
+.priority-high {
+    background-color: #fecaca;
+    color: #991b1b;
+}
+
+.dark .priority-high {
+    background-color: #7f1d1d;
+    color: #fca5a5;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .task-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .task-info {
+        width: 100%;
+    }
+}
+
+/* Modal Styles */
+.modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #374151;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c7d2fe;
+    border-radius: 10px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #4f46e5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a5b4fc;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #6366f1;
 }
