@@ -1,3 +1,4 @@
+  /*hide / disconnected from the 3D background script to avoid conflicts with the current task
 // 3D Background with Three.js
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('3d-background');
